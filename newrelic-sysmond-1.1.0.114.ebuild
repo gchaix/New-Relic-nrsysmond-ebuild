@@ -17,20 +17,31 @@ DEPEND=""
 RDEPEND="${DEPEND}"
 
 pkg_setup() {
+	# create daemon user
 	enewuser newrelic -1 /bin/false /usr/local/newrelic/newrelic-sysmond/ 
 }
 
 src_install() {
-	local docs="INSTALL.txt"
-	insinto /usr/local/newrelic/newrelic-sysmond
-	doexe nrsysmond.x64
-	doexe nrsysmond-config
+	# daemon and config binaries
+	exeinto /usr/local/newrelic/newrelic-sysmond
+	doexe daemon/nrsysmond.x64 || die
+	doexe scripts/nrsysmond-config || die
 	dosym /usr/local/newrelic/newrelic-sysmond/daemon/nrsysmond.x64	/usr/bin/nrsysmond
 	dosym /usr/local/newrelic/newrelic-sysmond/scripts/nrsysmond-config /usr/bin/nrsysmond-config
-	dodoc -r $(docs}
+	
+	# config file
+	insinto /etc/newrelic
+	newins nrsysmond.cfg nrsysmond.cfg || die
+
+	# init
+	newinitd "${FILES}/nrsysmond.initd" nrsysmond
+
+	# docs
+	dodoc INSTALL.txt
 }
 
 pkg_postinst {
+	# Warnings and notes
 	einfo "If you are using a grsec kernel, you will likely need to grant the newrelic
 	user access to /proc by setting 'CONFIG_GRKERNSEC_PROC_GID' and adding the
 	newrelic user to the appropriate group."
