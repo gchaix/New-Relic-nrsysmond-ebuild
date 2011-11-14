@@ -34,7 +34,7 @@ src_install() {
 	newins nrsysmond.cfg nrsysmond.cfg || die
 
 	# init
-	newinitd "${FILES}/nrsysmond.initd" nrsysmond
+	newinitd "${FILESDIR}/nrsysmond.initd" nrsysmond
 
 	# docs
 	dodoc INSTALL.txt
