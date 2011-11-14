@@ -4,17 +4,17 @@
 # $Header: $
 
 depend() {
-
+	need net
 }
 
 start() {
-
+	ebegin "Starting New Relic system monitor"
+	start-stop-daemon --quiet --start --pidfile /var/run/nrsysmond.pid --exec /usr/bin/nrsysmond -- -p /var/run/nrsysmond.pid -c /etc/newrelic/nrsysmond.cfg &> /dev/null
+	eend $?
 }
 
 stop() {
-
-}
-
-restart() {
-
+	ebegin "Stopping New Relic system monitor"
+	start-stop-daemon --quiet --stop --pidfile /var/run/nrsysmond.pid
+	eend $?
 }
