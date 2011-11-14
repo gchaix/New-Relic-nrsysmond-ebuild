@@ -40,7 +40,7 @@ src_install() {
 	dodoc INSTALL.txt
 }
 
-pkg_postinst {
+pkg_postinst() {
 	# Warnings and notes
 	einfo "If you are using a grsec kernel, you will likely need to grant the newrelic
 	user access to /proc by setting 'CONFIG_GRKERNSEC_PROC_GID' and adding the
