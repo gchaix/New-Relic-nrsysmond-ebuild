@@ -6,7 +6,7 @@ EAPI=3
 
 DESCRIPTION="New Relic sysmond"
 HOMEPAGE="http://newrelic.com/docs/server/server-monitor-installation-other-linux"
-SRC_URI="http://download.newrelic.com/server_monitor/release/newrelic-sysmond-1.1.1.118-linux.tar.gz"
+SRC_URI="http://download.newrelic.com/server_monitor/release/${P}-linux.tar.gz"
 
 LICENSE="Apache 2.0"
 SLOT="0"
@@ -18,14 +18,14 @@ RDEPEND="${DEPEND}"
 
 pkg_setup() {
 	# create daemon user
-	enewuser newrelic -1 /bin/false /usr/local/newrelic/newrelic-sysmond/ 
+	enewuser newrelic -1 /bin/false /usr/local/newrelic/newrelic-sysmond/
 }
 
 src_install() {
 	# daemon and config binaries
 	exeinto /usr/local/newrelic/newrelic-sysmond
-	doexe daemon/nrsysmond.x64 || die
-	doexe scripts/nrsysmond-config || die
+	doexe ${D}/daemon/nrsysmond.x64 || die
+	doexe ${D}/scripts/nrsysmond-config || die
 	dosym /usr/local/newrelic/newrelic-sysmond/daemon/nrsysmond.x64	/usr/bin/nrsysmond
 	dosym /usr/local/newrelic/newrelic-sysmond/scripts/nrsysmond-config /usr/bin/nrsysmond-config
 	
