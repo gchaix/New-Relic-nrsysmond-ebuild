@@ -1,0 +1,17 @@
+# Defaults for the New Relic Server Monitor init script
+#
+# Over-ride cfgfile with your own location if it is not in
+# /etc/newrelic/nrsysmond.cfg or
+# /etc/nrsysmond.cfg or
+# /usr/local/etc/nrsysmond.cfg
+#
+#cfgfile=
+#
+# Over-ride nrdaemon with the location of the New Relic System Monitor if it
+# is not in /usr/sbin/nrsysmond or /usr/local/sbin/nrsysmond
+#
+#nrdaemon=
+#
+# User to run the Server Monitor as
+#
+RUNAS=newrelic
