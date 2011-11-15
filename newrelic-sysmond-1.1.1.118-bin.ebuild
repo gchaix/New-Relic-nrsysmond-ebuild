@@ -25,15 +25,16 @@ pkg_setup() {
 
 src_install() {
 	# daemon and config binaries
-	exeinto /usr/local/newrelic/newrelic-sysmond
-	doexe daemon/nrsysmond.x64 || die
-	doexe scripts/nrsysmond-config || die
-	dosym /usr/local/newrelic/newrelic-sysmond/nrsysmond.x64	/usr/bin/nrsysmond
-	dosym /usr/local/newrelic/newrelic-sysmond/nrsysmond-config /usr/bin/nrsysmond-config
+	exeinto /opt/newrelic-sysmond
+	# todo - detect x86 or x64 and install the appropriate binary here, currently x64 only
+    doexe daemon/nrsysmond.x64
+	doexe scripts/nrsysmond-config
+	dosym /opt/newrelic-sysmond/nrsysmond.x64	/usr/bin/nrsysmond
+	dosym /opt/newrelic-sysmond/nrsysmond-config /usr/bin/nrsysmond-config
 	
 	# config file
 	insinto /etc/newrelic
-	newins nrsysmond.cfg nrsysmond.cfg || die
+	newins nrsysmond.cfg nrsysmond.cfg
 
 	# init
 	newinitd "${FILESDIR}"/nrsysmond.initd nrsysmond
