@@ -6,7 +6,7 @@ EAPI=4
 
 inherit eutils
 
-MY_P="${P}-linux"
+MY_P="newrelic-sysmond-${PV}-linux"
 DESCRIPTION="New Relic sysmond"
 HOMEPAGE="http://newrelic.com/docs/server/server-monitor-installation-other-linux"
 SRC_URI="http://download.newrelic.com/server_monitor/release/newrelic-sysmond-${PV}-linux.tar.gz"
