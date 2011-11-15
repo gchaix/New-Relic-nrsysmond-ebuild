@@ -6,7 +6,7 @@ EAPI=3
 
 DESCRIPTION="New Relic sysmond"
 HOMEPAGE="http://newrelic.com/docs/server/server-monitor-installation-other-linux"
-SRC_URI="http://download.newrelic.com/server_monitor/release/newrelic-sysmond-1.1.0.114-linux.tar.gz"
+SRC_URI="http://download.newrelic.com/server_monitor/release/newrelic-sysmond-1.1.0.118-linux.tar.gz"
 
 LICENSE="Apache 2.0"
 SLOT="0"
