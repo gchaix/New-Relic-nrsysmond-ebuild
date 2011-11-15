@@ -6,6 +6,7 @@ EAPI=4
 
 inherit eutils
 
+MY_P="${P}-linux"
 DESCRIPTION="New Relic sysmond"
 HOMEPAGE="http://newrelic.com/docs/server/server-monitor-installation-other-linux"
 SRC_URI="http://download.newrelic.com/server_monitor/release/${P}-linux.tar.gz"
@@ -15,8 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-DEPEND=""
-RDEPEND="${DEPEND}"
+S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
 	# create daemon user
@@ -26,21 +26,20 @@ pkg_setup() {
 src_install() {
 	# daemon and config binaries
 	exeinto /usr/local/newrelic/newrelic-sysmond
-	doexe "${WORKDIR}/${P}-linux/daemon/nrsysmond.x64" || die
-	doexe "${WORKDIR}/${P}-linux/scripts/nrsysmond-config" || die
+	doexe daemon/nrsysmond.x64 || die
+	doexe scripts/nrsysmond-config || die
 	dosym /usr/local/newrelic/newrelic-sysmond/daemon/nrsysmond.x64	/usr/bin/nrsysmond
 	dosym /usr/local/newrelic/newrelic-sysmond/scripts/nrsysmond-config /usr/bin/nrsysmond-config
 	
 	# config file
 	insinto /etc/newrelic
-	newins ${WORKDIR}/${P}-linux/nrsysmond.cfg nrsysmond.cfg || die
+	newins nrsysmond.cfg nrsysmond.cfg || die
 
 	# init
-	newinitd "${FILESDIR}/nrsysmond.initd" nrsysmond
+	newinitd "${FILESDIR}"/nrsysmond.initd nrsysmond
 
 	# docs
-	dodoc "${WORKDIR}/${P}-linux/INSTALL.txt"
-    dodoc "${WORKDIR}/${P}-linux/LICENSE.txt"
+	dodoc INSTALL.txt LICENSE.txt
 }
 
 pkg_postinst() {
