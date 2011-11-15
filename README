@@ -1,0 +1,3 @@
+An ebuild to install the New Relic system monitoring daemon.
+
+A note regarding grsecuirty:  If you're running a kernel with grsecurity, you will need to grant the newrelic user access to /proc by setting 'CONFIG_GRKERNSEC_PROC_GID' and add the newrelic user to the appropriate group.
