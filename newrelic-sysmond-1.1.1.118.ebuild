@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=3
+EAPI=4
 
 inherit eutils
 
@@ -26,8 +26,8 @@ pkg_setup() {
 src_install() {
 	# daemon and config binaries
 	exeinto /usr/local/newrelic/newrelic-sysmond
-	doexe ${WORKDIR}/${P}-linux/daemon/nrsysmond.x64 || die
-	doexe ${WORKDIR}/${P}-linux/scripts/nrsysmond-config || die
+	doexe "${WORKDIR}/${P}-linux/daemon/nrsysmond.x64" || die
+	doexe "${WORKDIR}/${P}-linux/scripts/nrsysmond-config" || die
 	dosym /usr/local/newrelic/newrelic-sysmond/daemon/nrsysmond.x64	/usr/bin/nrsysmond
 	dosym /usr/local/newrelic/newrelic-sysmond/scripts/nrsysmond-config /usr/bin/nrsysmond-config
 	
@@ -39,8 +39,8 @@ src_install() {
 	newinitd "${FILESDIR}/nrsysmond.initd" nrsysmond
 
 	# docs
-	dodoc ${WORKDIR}/${P}-linux/INSTALL.txt
-    dodoc ${WORKDIR}/${P}-linux/LICENSE.txt
+	dodoc "${WORKDIR}/${P}-linux/INSTALL.txt"
+    dodoc "${WORKDIR}/${P}-linux/LICENSE.txt"
 }
 
 pkg_postinst() {
