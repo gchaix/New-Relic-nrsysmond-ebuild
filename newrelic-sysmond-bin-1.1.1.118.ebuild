@@ -9,7 +9,7 @@ inherit eutils
 MY_P="${P}-linux"
 DESCRIPTION="New Relic sysmond"
 HOMEPAGE="http://newrelic.com/docs/server/server-monitor-installation-other-linux"
-SRC_URI="http://download.newrelic.com/server_monitor/release/${P}-linux.tar.gz"
+SRC_URI="http://download.newrelic.com/server_monitor/release/newrelic-sysmond-${PV}-linux.tar.gz"
 
 LICENSE="Apache 2.0"
 SLOT="0"
@@ -25,11 +25,12 @@ pkg_setup() {
 
 src_install() {
 	# daemon and config binaries
-	exeinto /usr/local/newrelic/newrelic-sysmond
-	doexe daemon/nrsysmond.x64 || die
-	doexe scripts/nrsysmond-config || die
-	dosym /usr/local/newrelic/newrelic-sysmond/nrsysmond.x64	/usr/bin/nrsysmond
-	dosym /usr/local/newrelic/newrelic-sysmond/nrsysmond-config /usr/bin/nrsysmond-config
+	exeinto /opt/newrelic-sysmond
+    # todo - detect x86 or x64 and install the proper binary
+	doexe daemon/nrsysmond.x64
+    doexe scripts/nrsysmond-config
+    dosym /opt/newrelic-sysmond/nrsysmond.x64	/usr/bin/nrsysmond
+	dosym /opt/newrelic-sysmond/nrsysmond-config /usr/bin/nrsysmond-config
 	
 	# config file
 	insinto /etc/newrelic
