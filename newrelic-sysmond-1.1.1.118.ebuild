@@ -20,7 +20,7 @@ S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
 	# create daemon user
-	enewuser newrelic -1 /bin/false /usr/local/newrelic/newrelic-sysmond/
+	enewuser newrelic -1 -1
 }
 
 src_install() {
