@@ -4,6 +4,8 @@
 
 EAPI=3
 
+inherit eutils
+
 DESCRIPTION="New Relic sysmond"
 HOMEPAGE="http://newrelic.com/docs/server/server-monitor-installation-other-linux"
 SRC_URI="http://download.newrelic.com/server_monitor/release/${P}-linux.tar.gz"
