@@ -40,7 +40,7 @@ src_install() {
 
     # defaults (to set runas user)
     insinto /etc/default
-    newins "${FILESFIR}"/newrelic-sysmond.defaults newrelic-sysmond
+    newins "${FILESDIR}"/newrelic-sysmond.defaults newrelic-sysmond
 
 	# docs
 	dodoc INSTALL.txt LICENSE.txt

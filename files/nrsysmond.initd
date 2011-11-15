@@ -9,6 +9,10 @@ depend() {
 
 start() {
 	ebegin "Starting New Relic system monitor"
+    # Source the defaults
+    if [ -f /etc/default/${NAME} ]; then
+        . /etc/default/${NAME}
+    fi
 	start-stop-daemon --quiet --start --pidfile /var/run/nrsysmond.pid --exec /usr/bin/nrsysmond -- -p /var/run/nrsysmond.pid -c /etc/newrelic/nrsysmond.cfg &> /dev/null
 	eend $?
 }
