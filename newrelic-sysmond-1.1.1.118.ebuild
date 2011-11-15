@@ -38,10 +38,6 @@ src_install() {
 	# init
 	newinitd "${FILESDIR}"/nrsysmond.initd nrsysmond
 
-    # defaults (to set runas user)
-    insinto /etc/default
-    newins "${FILESDIR}"/nrsysmond.defaults nrsysmond
-
 	# docs
 	dodoc INSTALL.txt LICENSE.txt
 }
