@@ -24,20 +24,21 @@ pkg_setup() {
 src_install() {
 	# daemon and config binaries
 	exeinto /usr/local/newrelic/newrelic-sysmond
-	doexe ${D}/daemon/nrsysmond.x64 || die
-	doexe ${D}/scripts/nrsysmond-config || die
+	doexe ${WORKDIR}/${P}-linux/daemon/nrsysmond.x64 || die
+	doexe ${WORKDIR}/${P}-linux/scripts/nrsysmond-config || die
 	dosym /usr/local/newrelic/newrelic-sysmond/daemon/nrsysmond.x64	/usr/bin/nrsysmond
 	dosym /usr/local/newrelic/newrelic-sysmond/scripts/nrsysmond-config /usr/bin/nrsysmond-config
 	
 	# config file
 	insinto /etc/newrelic
-	newins nrsysmond.cfg nrsysmond.cfg || die
+	newins ${WORKDIR}/${P}-linux/nrsysmond.cfg nrsysmond.cfg || die
 
 	# init
 	newinitd "${FILESDIR}/nrsysmond.initd" nrsysmond
 
 	# docs
-	dodoc INSTALL.txt
+	dodoc ${WORKDIR}/${P}-linux/INSTALL.txt
+    dodoc ${WORKDIR}/${P}-linux/LICENSE.txt
 }
 
 pkg_postinst() {
