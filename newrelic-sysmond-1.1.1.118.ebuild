@@ -28,8 +28,8 @@ src_install() {
 	exeinto /usr/local/newrelic/newrelic-sysmond
 	doexe daemon/nrsysmond.x64 || die
 	doexe scripts/nrsysmond-config || die
-	dosym /usr/local/newrelic/newrelic-sysmond/daemon/nrsysmond.x64	/usr/bin/nrsysmond
-	dosym /usr/local/newrelic/newrelic-sysmond/scripts/nrsysmond-config /usr/bin/nrsysmond-config
+	dosym /usr/local/newrelic/newrelic-sysmond/nrsysmond.x64	/usr/bin/nrsysmond
+	dosym /usr/local/newrelic/newrelic-sysmond/nrsysmond-config /usr/bin/nrsysmond-config
 	
 	# config file
 	insinto /etc/newrelic
